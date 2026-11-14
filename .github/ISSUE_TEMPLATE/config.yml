@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Request a CodeHandoff fit check
+    url: https://little-mouse-2f95.david56782004.workers.dev/
+    about: Use the service page for pricing, scope, and private project discussion.
+  - name: Read the service scope first
+    url: https://github.com/david56782004/codehandoff/blob/main/SERVICE.md
+    about: Review what is included and excluded before contacting the owner.
+
