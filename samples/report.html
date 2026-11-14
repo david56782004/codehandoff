@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>codehandoff · 交付风险报告</title>
+  <style>
+    :root {
+      --ink: #14213d;
+      --muted: #5d6474;
+      --paper: #f6f3ec;
+      --card: #fffdf8;
+      --line: #ded8ca;
+      --accent: #e76f51;
+      --teal: #177e89;
+      --critical: #a4161a;
+      --high: #d35400;
+      --medium: #9a6700;
+      --low: #246b52;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, #e9c46a33 0 180px, transparent 181px),
+        linear-gradient(135deg, #f8f5ed 0%, #eee9df 100%);
+      font: 15px/1.65 "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    main { width: min(1060px, calc(100% - 32px)); margin: 32px auto 64px; }
+    .cover {
+      position: relative;
+      overflow: hidden;
+      padding: 46px;
+      color: #fffaf0;
+      background: var(--ink);
+      border-radius: 26px;
+      box-shadow: 0 24px 64px #14213d2e;
+    }
+    .cover::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -70px;
+      top: -90px;
+      border: 48px solid #e76f51;
+      border-radius: 50%;
+      opacity: .82;
+    }
+    .eyebrow { color: #f4a261; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { max-width: 690px; margin: 16px 0 10px; font-size: clamp(2rem, 5vw, 4.2rem); line-height: 1.02; }
+    .subtitle { color: #cbd3e1; max-width: 660px; font-size: 1.02rem; }
+    .cover-foot { display: flex; flex-wrap: wrap; gap: 26px 54px; margin-top: 36px; color: #cbd3e1; }
+    .cover-foot strong { display: block; color: white; }
+    .scoreboard { display: grid; grid-template-columns: 210px 1fr; gap: 20px; margin: 22px 0; }
+    .score {
+      display: grid;
+      place-content: center;
+      min-height: 210px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+    .score strong { font-size: 4.8rem; line-height: 1; }
+    .score span { color: var(--muted); }
+    .grade { color: var(--accent); font-size: 1.35rem; font-weight: 800; }
+    .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .metric {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+    .metric strong { font-size: 2rem; line-height: 1.2; }
+    .metric span { color: var(--muted); }
+    section {
+      margin-top: 22px;
+      padding: 30px;
+      background: #ffffffd9;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+    h2 { margin: 0 0 18px; font-size: 1.55rem; }
+    .severity-count, .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      color: white;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+    .severity-count { margin: 0 8px 8px 0; }
+    .critical { background: var(--critical); }
+    .high { background: var(--high); }
+    .medium { background: var(--medium); }
+    .low { background: var(--low); }
+    .finding { padding: 22px 0; border-top: 1px solid var(--line); }
+    .finding:first-of-type { border-top: 0; }
+    .finding-head { display: flex; align-items: center; gap: 12px; }
+    .finding h3 { margin: 0; font-size: 1.12rem; }
+    .meta { color: var(--muted); font-size: .84rem; margin-top: 5px; }
+    .recommendation { padding: 12px 16px; background: #f2eee4; border-left: 4px solid var(--teal); }
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .columns ul { margin: 0; padding-left: 22px; }
+    .empty { padding: 24px; background: #eaf4f4; border-radius: 12px; }
+    footer { padding: 24px 8px; color: var(--muted); font-size: .82rem; }
+    @media (max-width: 720px) {
+      .cover { padding: 30px 24px; }
+      .scoreboard, .columns { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      section { padding: 22px; }
+    }
+    @media print {
+      body { background: white; }
+      main { width: 100%; margin: 0; }
+      .cover, section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="cover">
+      <div class="eyebrow">Handover readiness audit</div>
+      <h1>codehandoff<br>交付风险报告</h1>
+      <p class="subtitle">把代码库中的交接风险转成客户能理解、团队能执行的修复清单。</p>
+      <div class="cover-foot">
+        <div>出具方<strong>CodeHandoff</strong></div>
+        <div>客户/项目<strong>codehandoff</strong></div>
+        <div>扫描时间<strong>2026-11-12T13:44:36+00:00</strong></div>
+      </div>
+    </header>
+
+    <div class="scoreboard">
+      <div class="score">
+        <span>交付准备分</span>
+        <strong>99</strong>
+        <span class="grade">等级 A / 100</span>
+      </div>
+      <div class="metrics"><div class="metric"><strong>20</strong><span>Python 文件</span></div><div class="metric"><strong>3122</strong><span>Python 行数</span></div><div class="metric"><strong>11</strong><span>测试文件</span></div><div class="metric"><strong>1</strong><span>待处理问题</span></div></div>
+    </div>
+
+    <section>
+      <h2>问题总览</h2>
+      <div><span class="severity-count critical">紧急 0</span><span class="severity-count high">高 0</span><span class="severity-count medium">中 0</span><span class="severity-count low">低 1</span></div>
+      <p>优先处理紧急与高优先级问题；中低优先级项可根据交付窗口排期。</p>
+    </section>
+
+    <section>
+      <h2>优先处理清单</h2>
+      
+    <article class="finding">
+      <div class="finding-head">
+        <span class="pill low">低</span>
+        <h3>遗留待办较多</h3>
+      </div>
+      <div class="meta">可维护性 · 项目级 · 预估 1–3 小时</div>
+      <p>扫描到 16 处 TODO/FIXME/HACK 标记。</p>
+      <p class="recommendation"><strong>建议：</strong>区分已知缺陷、长期想法和技术债，并把影响交付的条目转成任务。</p>
+    </article>
+    
+    </section>
+
+    <section class="columns">
+      <div>
+        <h2>已有基础</h2>
+        <ul><li>包含 README，具备基础交付说明。</li><li>存在 11 个测试文件，具备自动验证基础。</li><li>配置了持续集成，质量检查有机会自动化。</li><li>包含许可证文件，授权边界更容易确认。</li><li>没有声明第三方运行依赖，部署面较小。</li><li>所有被扫描的 Python 文件均可成功解析。</li></ul>
+      </div>
+      <div>
+        <h2>扫描边界</h2>
+        <ul><li>这是基于静态文本和 AST 的交付风险筛查，不等同于安全审计或真实测试覆盖率。</li><li>不会执行项目代码，也不会读取 .env、密钥或凭据文件。</li><li>测试覆盖为按测试文件名和引用关系计算的代理指标，应结合 pytest-cov 等工具复核。</li><li>严重度代表交接风险优先级，不代表业务收入或法律结论。</li></ul>
+      </div>
+    </section>
+
+    <footer>
+      本报告由 CodeHandoff 使用 CodeHandoff 生成。静态分析可能遗漏运行时、架构、
+      法律和业务问题；高价值交付仍应由工程师复核。
+    </footer>
+  </main>
+</body>
+</html>
