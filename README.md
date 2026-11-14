@@ -38,6 +38,10 @@ work outside the agreed scope.
 
 ## Purchase or request a fit check
 
+Have a public GitHub repository? Send its
+`https://github.com/owner/repo` URL for a free read-only sample before deciding
+whether the full service is useful.
+
 Visit the live service page:
 
 https://little-mouse-2f95.david56782004.workers.dev/
